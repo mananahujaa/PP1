@@ -18,7 +18,14 @@ class Person
         bool access;
         int phone;
     public:
+
+        // Conctructor assign data
         Person(string name, string dob, string user, string pass, string email, int phone);
+
+        // Function to set access to TRUE for employees
+        void setAccessForEmployee();
+
+        // Destructor
         ~Person();
 
 };
@@ -27,9 +34,25 @@ class Employee : public Person
 {   private:
         string empID;
     public:
+
+        // Constructor to assign Employee ID and give access
         Employee(string empID, string name, string dob, string user, string pass, string email, int phone);
+
+        // Destructor
         ~Employee();
-        void AcessSetter();
+};
+
+class Patient : public Person
+{
+    private:
+        bool paymentStatus;
+        string insuranceID;
+    public:
+
+        // Constructor to assign insuranceID for 
+        Patient(string insuranceID, string name, string dob, string user, string pass, string email, int phone);
+
+        ~Patient();
 };
 
 #endif

@@ -18,9 +18,14 @@ Person::Person(string name, string dob, string user, string pass, string email, 
     this->access = false;
 }
 
+void Person::setAccessForEmployee()
+{
+    this->access = true;
+}
+
 Person::~Person()
 {
-    cout << "deleted";
+    cout << "Person deleted";
 }
 
 // Employee
@@ -28,16 +33,31 @@ Person::~Person()
 Employee::Employee(string empID, string name, string dob, string user, string pass, string email, int phone) : Person(name, dob, user, pass, email, phone) 
 {
     this->empID = empID;
+    this->setAccessForEmployee();
 }
 
 Employee::~Employee()
 {
-    cout << "deleted";
+    cout << "Employee deleted";
+}
+
+// Patients 
+
+Patient::Patient(string insuranceID, string name, string dob, string user, string pass, string email, int phone) : Person(name, dob, user, pass, email, phone) 
+{
+    this->paymentStatus = false;
+    this->insuranceID = insuranceID;
+}
+
+Patient::~Patient()
+{
+    cout << "Patient deleted" << endl;
 }
 
 int main()
 {
 
     Employee emp("EMP001", "John Doe", "01/01/1990", "johndoe", "password123", "johndoe@example.com", 1234567890);
+    Patient pat("230948aksjd", "John Doe", "01/01/1990", "johndoe", "password123", "johndoe@example.com", 1234567890);
     return 0;
 }
