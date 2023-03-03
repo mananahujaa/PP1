@@ -1,9 +1,14 @@
+#include "iostream"
 #include "CircleList.h"
+
+using namespace std;
 
 template<typename T>
 CircleList<T>::CircleList()
 {
-    this->head = NULL;
+    this->front = NULL;
+    this->rear = NULL;
+    this->counter = 0;
 }
 
 template<typename T>
@@ -18,41 +23,43 @@ CircleList<T>::~CircleList()
 template<typename T>
 bool CircleList<T>::empty() const
 {
-    return head == NULL;
+    return this->front == NULL;
 }
 
 template<typename T>
 void CircleList<T>::add(T data)
 {
-    CNode<T>* newNode = new CNode(data);
-
-    if(head == NULL)
+    CNode<T>* newNode = new CNode<T>(data);
+    if(this->front == NULL)
     {
-        newNode->next = newNode;
-    }
-    else
-    {
-        newNode->next = head->next;
-        head->next = newNode;
+        cout << "empty";
+        return;
     }
 
-    counter++;
+
 }
 
 template<typename T>
 void CircleList<T>::remove()
 {
-    CNode<T>* old = head->next;
-    
-    if(old == head)
-    {
-        head = NULL;
-    }
-    else
-    {
-        head->next = old->next;
-        delete old;
-    }
 
-    counter--;
 }
+
+template<typename T>
+void CircleList<T>::printQ()
+{
+    CNode<T>* temp = this->front;
+    if(!empty())
+    {
+        cout << endl << "Queue:" << endl;
+        while(temp->next != this->front)
+        {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+    }
+}
+
+
+
+//https://www.geeksforgeeks.org/circular-linked-list-implementation-of-circular-queue/
