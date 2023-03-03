@@ -52,6 +52,7 @@ class Patient : public Person
         // Constructor to assign insuranceID for 
         Patient(string insuranceID, string name, string dob, string user, string pass, string email, int phone);
 
+        // Destructor
         ~Patient();
 };
 
