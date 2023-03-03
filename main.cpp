@@ -6,168 +6,128 @@
 //
 
 #include <iostream>
-#include <string>
-#include "CircleList.h"
-#include "CircleList.cpp"
+using namespace std;
 
-using namespace std;  //Using standards
+// Forward declaration of Queue class
+template <typename T>
+class Queue;
 
-
-class TheatersInArea{               //class to see theaters in a certain area
+// Ticket class
+class Ticket {
+private:
+    int number;
 public:
-    string Moviename;               //movie names showing now
-    string Theatername;             //theaters showing movies
-    string Movietime;               //time of movie
-    string NextMovietime;
-    
-    void setMovieName(string Moviename){  //set Movie Name
-        cin>>Moviename;
-    }
-    
-    string getMovieName(){              //get Movie Name
-        return Moviename;
-    }
-    
-    void setTheaterName(string Theatername){        //set Movie Theater
-        cin>>Theatername;
-    }
-    
-    string getTheaterName(){                    //get Movie Theater
-        return Theatername;
-    }
-    
-    void setMovieTime(string Movietime){            //set Movie Time
-        cin>>Movietime;
-    }
-    
-    string getMovieTime(){          //get Movie Time
-        return Movietime;
-    }
-    
-    void setNextMovieTime(string NextMovietime){            //set Next Movie Time
-        cin>>NextMovietime;
-    }
-    
-    string getNextMovieTime(){      //get Next Movie Time
-        return NextMovietime;
-    }
+    Ticket(int n) : number(n) {}
+    int getNumber() { return number; }
+    void print() { cout << "Ticket number: " << number << endl; }
 };
 
-class Theater : public TheatersInArea {
-public:                                             //particular theater name
-    int NumSeats;                                   //num of seats in theater
-    void setNumOfSeats(string NumSeats){            //set number of seats in the theater
-        cin>>NumSeats;
+// QueueNode class
+template <typename T>
+class QueueNode {
+private:
+    T data;
+    QueueNode<T>* next;
+public:
+    QueueNode(T d) : data(d), next(NULL) {}
+    friend class Queue<T>;
+};
+
+// Queue class
+template <typename T>
+class Queue {
+private:
+    QueueNode<T>* rear;
+    int size;
+public:
+    Queue() : rear(NULL), size(0) {}
+    
+    ~Queue(){
+        while(!isEmpty()){
+            dequeue();
+        }
     }
     
-    int getNumOfSeats(){
-        return NumSeats;
+    bool isEmpty() {
+        return rear == NULL;
     }
+    
+    int getSize() {
+        return size;
+    }
+
+    //Enqueue operation
+    void enqueue(T d){
+        QueueNode<T>* newNode = new QueueNode<T>(d);
+        if (isEmpty()) {
+            rear = newNode;
+            rear->next = rear;
+        } else {
+            newNode->next = rear->next;
+            rear->next = newNode;
+            rear = newNode;
+        }
+        size++;
+    }
+    
+    // Dequeue operation
+    void dequeue(){
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+        QueueNode<T>* temp = rear->next;
+        rear->next = temp->next;
+        cout << "Ticket processed: ";
+        temp->data.print();
+        delete temp;
+        size--;
+    }
+    // Print operation
+    void print(){
+        if (isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+        QueueNode<T>* temp = rear->next;
+        cout << "Queue contents: ";
+        do {
+            temp->data.print();
+            temp = temp->next;
+        } while (temp != rear->next);
+    };
 };
 
 
 
-// typedef string Elem ;
-// class CNode{                          //Circular Linked List implementation
-// public:
-//     Elem data;                       //DATA to be stored in a node
-//     CNode* next;                     //next node
-//     CNode(Elem data){                //Constructor
-//         this-> data=data;
-//         this->next=NULL;
-//     }
-//     friend class CircleList;         //FRIEND CLASS for CLL implementation
-    
-// };
 
-// class CircleList{
-// private:
-//     CNode* head;            //head node(cursor)
+// Main function
+int main() {
+    // Create a ticket queue
+    Queue<Ticket> ticketQueue;
     
-// public:
-//     int counter;
-//     CircleList() : head(NULL){};        //constructor
+    // Add some tickets to the queue
+    Ticket t1(1), t2(2), t3(3);
+    ticketQueue.enqueue(t1);
+    ticketQueue.enqueue(t2);
+    ticketQueue.enqueue(t3);
     
-//     ~CircleList(){                      //destructor
-//         while(!empty()){
-//             remove();
-//         }
-//     }
-        
-//     bool empty(){                       //check if list empty
-//         return head==NULL;
-//     }
+    // Process some tickets
+    ticketQueue.dequeue();
+    ticketQueue.dequeue();
     
-//     const Elem& peek(){                 //peek a particular node
-//         return head->data;
-//     }
+    // Add more tickets to the queue
+    Ticket t4(4), t5(5);
+    ticketQueue.enqueue(t4);
+    ticketQueue.enqueue(t5);
     
-//     const Elem& nxtpeek(){              //peek next node
-//         return head->next->data;
-//     }
+    // Process the rest of the tickets
+    ticketQueue.dequeue();
+    ticketQueue.dequeue();
+    ticketQueue.dequeue();
     
-//     void advnode(){                     //move node to next
-//         head=head->next;
-//     }
+    // Print the final state of the queue
+    ticketQueue.print();
     
-//     void add(const Elem& e) {           //add node
-//         CNode* NewNode = new CNode(e);      //create new node with value
-        
-        
-//         if (head == NULL) {            //if NULL return new node = head
-//             NewNode->next = NewNode;
-//             head = NewNode;
-//         }
-//         else {
-//             NewNode->next = head->next;     //head->NewNode->next(which was previously head->next)
-//             head->next = NewNode;
-            
-//         }
-//         counter++;      //count increased
-//     }
-    
-//     void remove(){         //remove node
-//         CNode* old = head->next;            //store value of next of head
-//         if (old == head){                   //if list only has head, delete
-//             head = NULL;
-//         }
-//         else
-//             head->next = old->next;             //now head->next will be head->next->next
-//         delete old;                             //delete the value of head->next
-       
-//         counter--;                              //count is reduced
-//     }
-    
-// };
-
-
-    
-int main()
-{
-    // TheatersInArea New_Delhi;
-    // New_Delhi.setMovieName("Top Gun");
-    // New_Delhi.setTheaterName("PVR");
-    // New_Delhi.setMovieTime("12:30p.m");
-    // New_Delhi.setNextMovieTime("3:30p.m");
-        
-        //pseudo code
-    /* set num of seats for the particular theater you're working on.
-    For each show start adding people in a queue as it is a first-come-first serve theater.
-    if counter (inClinkedLists) == numseats(in Theater) then return list is filled.
-    when list is filled, the next entry will be given the first spot in the queue for next movie time.
-    
-    */
-   CircleList<int> cc;
-   cc.add(5);
-   cc.add(5);
-   cc.add(5);
-   cc.add(5);
-   cc.printQ();
-   cc.remove();
-   cc.printQ();
-   cc.remove();
-   cc.printQ();
-                
     return 0;
 }
-
