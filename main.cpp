@@ -138,50 +138,7 @@ public:
     
 };
 
-typedef string Elem;
-class LinkedQueue{
-    
-private:
-    CircleList C;
-    int num;
-    
-public:
-    
-    LinkedQueue(): C(), num(0) {};
-    
-    
-    
-    int size() {
-        return num;
-    }
-    
-    bool empty() const{
-        return num == 0;
-    }
-    
-    const Elem& nxtpeek() {
-        if(empty()){
-            // add a return can't figure out what to return
-        }
-        
-        return C.nxtpeek();
-    }
-    
-    void EnQ(const Elem& newdata){
-        C.add(newdata);
-        C.advnode();
-        num++;
-        
-    }
-    
-    void DeQ(){
-        if (empty()){
-            // add a return can't figure out what to return
-        }
-        C.remove();
-        num--;
-    }
-};
+
     
 int main(){
 TheatersInArea New_Delhi;
