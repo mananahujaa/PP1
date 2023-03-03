@@ -4,7 +4,7 @@
 //
 //  Created by Manan Ahuja on 2/22/23.
 //
-/*
+
 #include <iostream>
 #include <string>
 #include "CircleList.h"
@@ -151,17 +151,12 @@ int main()
     // New_Delhi.setNextMovieTime("3:30p.m");
         
         //pseudo code
-    set num of seats for the particular theater you're working on.
-    For each show start adding people in a queue as it is a first-come-first serve theater.
-    if counter (inClinkedLists) == numseats(in Theater) then return list is filled.
-    when list is filled, the next entry will be given the first spot in the queue for next movie time.
-    
-    
+  
    CircleList<int> cc;
-   cc.add(5);
-   cc.add(5);
-   cc.add(5);
-   cc.add(5);
+   cc.add(1);
+   cc.add(2);
+   cc.add(3);
+   cc.add(4);
    cc.printQ();
    cc.remove();
    cc.printQ();
@@ -172,4 +167,3 @@ int main()
 }
 
 
-*/

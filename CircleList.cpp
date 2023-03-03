@@ -30,34 +30,55 @@ template<typename T>
 void CircleList<T>::add(T data)
 {
     CNode<T>* newNode = new CNode<T>(data);
-    if(this->front == NULL)
-    {
-        cout << "empty";
-        return;
+    if (empty()) {
+        this->front = newNode;
+        this->rear = newNode;
+        newNode->next = this->front;
     }
-
-
+    else {
+        newNode->next = this->front;
+        this->rear->next = newNode;
+        this->rear = newNode;
+    }
+    this->counter++;
 }
 
 template<typename T>
 void CircleList<T>::remove()
 {
-
+    if (empty()) {
+        cout << "The queue is empty!" << endl;
+        return;
+    }
+    if (this->front == this->rear) { // only one node in the queue
+        delete this->front;
+        this->front = NULL;
+        this->rear = NULL;
+        this->counter--;
+        return;
+    }
+    CNode<T>* temp = this->front;
+    this->front = temp->next;
+    this->rear->next = this->front;
+    delete temp;
+    this->counter--;
 }
 
 template<typename T>
 void CircleList<T>::printQ()
 {
-    CNode<T>* temp = this->front;
-    if(!empty())
-    {
-        cout << endl << "Queue:" << endl;
-        while(temp->next != this->front)
-        {
-            cout << temp->data << " -> ";
-            temp = temp->next;
-        }
+    if (empty()) {
+        cout << "The queue is empty!" << endl;
+        return;
     }
+
+    CNode<T>* temp = this->front;
+    cout << "Queue: ";
+    do {
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    } while (temp != this->front);
+    cout << endl;
 }
 
 
