@@ -3,7 +3,7 @@
 //  PP1
 //
 //  Created by Manan Ahuja on 2/22/23.
-//
+//Project partners- Manan Ahuja and Arwin Swapna
 
 #include <iostream>
 using namespace std;
@@ -12,14 +12,74 @@ using namespace std;
 template <typename T>
 class Queue;
 
+//Movie theaters in area
+class TheatersInArea{               //class to see theaters in a certain area
+public:
+    string Moviename;               //movie names showing now
+    string Theatername;             //theaters showing movies
+    string Movietime;               //time of movie
+    string NextMovietime;
+    
+    void setMovieName(string Moviename){  //set Movie Name
+        cin>>Moviename;
+    }
+    
+    string getMovieName(){              //get Movie Name
+        return Moviename;
+    }
+    
+    void setTheaterName(string Theatername){        //set Movie Theater
+        cin>>Theatername;
+    }
+    
+    string getTheaterName(){                    //get Movie Theater
+        return Theatername;
+    }
+    
+    void setMovieTime(string Movietime){            //set Movie Time
+        cin>>Movietime;
+    }
+    
+    string getMovieTime(){          //get Movie Time
+        return Movietime;
+    }
+    
+    void setNextMovieTime(string NextMovietime){            //set Next Movie Time
+        cin>>NextMovietime;
+    }
+    
+    string getNextMovieTime(){      //get Next Movie Time
+        return NextMovietime;
+    }
+};
+
+//particular theater
+class Theater : public TheatersInArea {
+public:                             //particular theater name
+    int NumSeats;                   //num of seats in theater
+    void setNumOfSeats(string NumSeats){            //set number of seats in the theater
+        cin>>NumSeats;
+    }
+    
+    int getNumOfSeats(){
+        return NumSeats;
+    }
+};
+
 // Ticket class
-class Ticket {
+class Ticket: public Theater {
 private:
     int number;
 public:
     Ticket(int n) : number(n) {}
-    int getNumber() { return number; }
-    void print() { cout << "Ticket number: " << number << endl; }
+    int getNumber() {
+        return number;
+        
+    }
+    void print() {
+        cout << "Ticket number: " << number << endl;
+        
+    }
 };
 
 // QueueNode class
@@ -58,17 +118,17 @@ public:
 
     //Enqueue operation
     void enqueue(T d){
-        QueueNode<T>* newNode = new QueueNode<T>(d);
-        if (isEmpty()) {
-            rear = newNode;
-            rear->next = rear;
-        } else {
-            newNode->next = rear->next;
-            rear->next = newNode;
-            rear = newNode;
+            QueueNode<T>* newNode = new QueueNode<T>(d);
+            if (isEmpty()) {
+                rear = newNode;
+                rear->next = rear;
+            } else {
+                newNode->next = rear->next;
+                rear->next = newNode;
+                rear = newNode;
+            }
+            size++;
         }
-        size++;
-    }
     
     // Dequeue operation
     void dequeue(){
@@ -131,3 +191,4 @@ int main() {
     
     return 0;
 }
+
