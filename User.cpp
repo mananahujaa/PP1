@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Person 
+// ------------------------- Person -------------------------
 
 Person::Person(string fname, string lname, string dob, string user, string pass, string email, int phone)
 {
@@ -30,12 +30,7 @@ string Person::getName()
     return name;
 }
 
-Person::~Person()
-{
-    cout << "Person deleted";
-}
-
-// Employee
+// ------------------------- Employee -------------------------
 
 Employee::Employee(string empID, string fname, string lname, string dob, string user, string pass, string email, int phone) : Person(fname, lname, dob, user, pass, email, phone) 
 {
@@ -43,12 +38,7 @@ Employee::Employee(string empID, string fname, string lname, string dob, string 
     this->setAccessForEmployee();
 }
 
-Employee::~Employee()
-{
-    cout << "Employee deleted";
-}
-
-// Patients 
+// ------------------------- Patients -------------------------
 
 Patient::Patient(string insuranceID, string fname, string lname, string dob, string user, string pass, string email, int phone) : Person(fname, lname, dob, user, pass, email, phone) 
 {
@@ -56,7 +46,13 @@ Patient::Patient(string insuranceID, string fname, string lname, string dob, str
     this->insuranceID = insuranceID;
 }
 
-Patient::~Patient()
+bool Patient::getPaymentStatus()
 {
-    cout << "Patient deleted" << endl;
+    return this->paymentStatus;
 }
+
+void Patient::setPaymentStatus()
+{
+    this->paymentStatus = true;
+}
+
