@@ -10,7 +10,8 @@ using namespace std;
 class Person
 {
     private:
-        string Name;
+        string fName;
+        string lName;
         string dateOfBirth;
         string username;
         string password;
@@ -20,10 +21,12 @@ class Person
     public:
 
         // Conctructor assign data
-        Person(string name, string dob, string user, string pass, string email, int phone);
+        Person(string fname, string lname, string dob, string user, string pass, string email, int phone);
 
         // Function to set access to TRUE for employees
         void setAccessForEmployee();
+
+        string getName();
 
         // Destructor
         ~Person();
@@ -36,7 +39,7 @@ class Employee : public Person
     public:
 
         // Constructor to assign Employee ID and give access
-        Employee(string empID, string name, string dob, string user, string pass, string email, int phone);
+        Employee(string empID, string fname, string lname, string dob, string user, string pass, string email, int phone);
 
         // Destructor
         ~Employee();
@@ -50,7 +53,7 @@ class Patient : public Person
     public:
 
         // Constructor to assign insuranceID for 
-        Patient(string insuranceID, string name, string dob, string user, string pass, string email, int phone);
+        Patient(string insuranceID, string fname, string lname, string dob, string user, string pass, string email, int phone);
 
         // Destructor
         ~Patient();

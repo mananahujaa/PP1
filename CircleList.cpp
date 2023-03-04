@@ -75,7 +75,7 @@ void CircleList<T>::printQ()
     CNode<T>* temp = this->front;
     cout << "Queue: ";
     do {
-        cout << temp->data << " -> ";
+        cout << temp->data->getName() << " -> ";
         temp = temp->next;
     } while (temp != this->front);
     cout << endl;
@@ -83,4 +83,3 @@ void CircleList<T>::printQ()
 
 
 
-//https://www.geeksforgeeks.org/circular-linked-list-implementation-of-circular-queue/

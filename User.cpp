@@ -7,9 +7,10 @@ using namespace std;
 
 // Person 
 
-Person::Person(string name, string dob, string user, string pass, string email, int phone)
+Person::Person(string fname, string lname, string dob, string user, string pass, string email, int phone)
 {
-    this->Name = name;
+    this->fName = fname;
+    this->lName = lname;
     this->dateOfBirth = dob;
     this->username = user;
     this->password = pass;
@@ -23,6 +24,12 @@ void Person::setAccessForEmployee()
     this->access = true;
 }
 
+string Person::getName()
+{
+    string name = this->fName + " " + this->lName;
+    return name;
+}
+
 Person::~Person()
 {
     cout << "Person deleted";
@@ -30,7 +37,7 @@ Person::~Person()
 
 // Employee
 
-Employee::Employee(string empID, string name, string dob, string user, string pass, string email, int phone) : Person(name, dob, user, pass, email, phone) 
+Employee::Employee(string empID, string fname, string lname, string dob, string user, string pass, string email, int phone) : Person(fname, lname, dob, user, pass, email, phone) 
 {
     this->empID = empID;
     this->setAccessForEmployee();
@@ -43,7 +50,7 @@ Employee::~Employee()
 
 // Patients 
 
-Patient::Patient(string insuranceID, string name, string dob, string user, string pass, string email, int phone) : Person(name, dob, user, pass, email, phone) 
+Patient::Patient(string insuranceID, string fname, string lname, string dob, string user, string pass, string email, int phone) : Person(fname, lname, dob, user, pass, email, phone) 
 {
     this->paymentStatus = false;
     this->insuranceID = insuranceID;
@@ -52,12 +59,4 @@ Patient::Patient(string insuranceID, string name, string dob, string user, strin
 Patient::~Patient()
 {
     cout << "Patient deleted" << endl;
-}
-
-int main()
-{
-
-    Employee emp("EMP001", "John Doe", "01/01/1990", "johndoe", "password123", "johndoe@example.com", 1234567890);
-    Patient pat("230948aksjd", "John Doe", "01/01/1990", "johndoe", "password123", "johndoe@example.com", 1234567890);
-    return 0;
 }
