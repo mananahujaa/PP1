@@ -10,8 +10,8 @@ using namespace std;
 class Person
 {
     private:
-        string fName;
-        string lName;
+        string fName;           //First name
+        string lName;           //Last name
         string dateOfBirth;
         string username;
         string password;
