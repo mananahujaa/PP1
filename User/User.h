@@ -29,6 +29,10 @@ class Person
 
         string getName();
 
+        string getUsername();
+
+        string getPassword();
+
 };
 
 class Employee : public Person 
@@ -38,7 +42,7 @@ class Employee : public Person
 
     public:
 
-        // Constructor to assign Employee ID and give access
+        // Constructor to assign Employee ID and give access (FYI the setAccessForEmployee() get called here)
         Employee(string empID, string fname, string lname, string dob, string user, string pass, string email, int phone);
 
 };

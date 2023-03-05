@@ -1,7 +1,10 @@
 #include "cstddef"
+#include "string"
 
 #ifndef CircleList_H
 #define CircleList_H
+
+using namespace std;
 
 template <typename T>
 class CNode{                          //Circular Linked List implementation
@@ -34,6 +37,9 @@ class CircleList
     void remove();
     void printQ();
 
+    // Function based on employee data
+
+    bool employeeAuth(string username, string password);
 };
 
 #endif

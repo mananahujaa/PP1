@@ -30,6 +30,16 @@ string Person::getName()
     return name;
 }
 
+string Person::getUsername()
+{
+    return this->username;
+}
+
+string Person::getPassword()
+{
+    return this->password;
+}
+
 // ------------------------- Employee -------------------------
 
 Employee::Employee(string empID, string fname, string lname, string dob, string user, string pass, string email, int phone) : Person(fname, lname, dob, user, pass, email, phone) 

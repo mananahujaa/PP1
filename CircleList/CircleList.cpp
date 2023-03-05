@@ -1,5 +1,7 @@
 #include "iostream"
+#include "string.h"
 #include "CircleList.h"
+#include "../User/User.h"
 
 using namespace std;
 
@@ -81,5 +83,21 @@ void CircleList<T>::printQ()
     cout << endl;
 }
 
+// Employee based functions for Circular LinkedList
 
+template<typename T>
+bool CircleList<T>::employeeAuth(string username, string password)
+{
+    CNode<T>* curr = this->front;
+    while(curr != NULL)
+    {
+        Employee* emp = dynamic_cast<Employee*>(curr->data);
+        if (emp != nullptr && emp->getUsername() == username && emp->password == password)
+        {
+            return true;
+        }
+        curr = curr->next;
+    }
+    return false;
+}
 
