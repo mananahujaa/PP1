@@ -27,7 +27,13 @@ CircleList<Employee*> loadEmployeeData()
 
 // ------------------------------- Main -------------------------------
 
-
+// Used to stop the console to let users see the messages and output
+void pause()
+{   
+    string dummy;
+    cout << "\n\nEnter any key and press Enter to continue:";
+    cin >> dummy;
+}
 
 // ------------------------------- Main -------------------------------
 
@@ -57,20 +63,23 @@ int main()
       Employee* sessionEmp = employeeList.employeeAuth(empUsername,empPassword);
       if(sessionEmp)
       {
-        int employeeMenu = 0;
-        system("clear");                                                                            //linux 
-        cout << "\t\t\tDoc Ock's Office" << endl << endl;
-        cout << " Welcome, " << sessionEmp->getName() << endl; 
-        cout << " What would you like to do? :)" << endl << endl;
-        cout << " 1. Show Patient WaitList \n 2. Add Patient \n 3. Pop Patient \n 4. Logout \n 5. Try Again" << endl;
-        cout << " Enter the corresponding number of the options from above options(eq : 1) :";
-        cin >> employeeMenu;
+        int employeeMenu;
         do
         {
+          employeeMenu = 0;
+          system("clear");                                                                            //linux 
+          cout << "\t\t\tDoc Ock's Office" << endl << endl;
+          cout << " Welcome, " << sessionEmp->getName() << endl; 
+          cout << " What would you like to do? :)" << endl << endl;
+          cout << " 1. Show Patient WaitList \n 2. Add Patient \n 3. Pop Patient \n 4. Logout" << endl;
+          cout << " Enter the corresponding number of the options from above options(eq : 1) :";
+          cin >> employeeMenu;
+          
           switch (employeeMenu)
           {
             case 1:
               patientList.printQ();
+              pause();
               break;
             case 2:
               break;
@@ -79,8 +88,6 @@ int main()
               break;    
             case 4:
               employeeMenu = 4;
-              break;
-            case 5:
               break;
             default:
               cout << "invalid Entry try again" << endl;
@@ -92,6 +99,7 @@ int main()
     else if(menuChoice == 2)
     {
       patientList.printQ();
+      pause();
     } 
     else
     {
