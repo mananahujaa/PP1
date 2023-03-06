@@ -1,5 +1,6 @@
 #include "cstddef"
 #include "string"
+#include "../User/User.h"
 
 #ifndef CircleList_H
 #define CircleList_H
@@ -39,7 +40,8 @@ class CircleList
 
     // Function based on employee data
 
-    bool employeeAuth(string username, string password);
+    Employee* employeeAuth(string username, string password);
+
 };
 
 #endif

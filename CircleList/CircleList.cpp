@@ -86,18 +86,25 @@ void CircleList<T>::printQ()
 // Employee based functions for Circular LinkedList
 
 template<typename T>
-bool CircleList<T>::employeeAuth(string username, string password)
+Employee* CircleList<T>::employeeAuth(string username, string password)
 {
     CNode<T>* curr = this->front;
-    while(curr != NULL)
+    while(curr != this->rear) 
     {
         Employee* emp = dynamic_cast<Employee*>(curr->data);
-        if (emp != nullptr && emp->getUsername() == username && emp->password == password)
+        if (emp != nullptr && emp->getUsername() == username && emp->getPassword() == password)
         {
-            return true;
+            return emp; // return the employee object if it exists
         }
         curr = curr->next;
     }
-    return false;
+    // check the last node separately since it was not checked in the while loop
+    Employee* emp = dynamic_cast<Employee*>(curr->data);
+    if (emp != nullptr && emp->getUsername() == username && emp->getPassword() == password)
+    {
+        return emp; // return the employee object if it exists
+    }
+    return nullptr; // return nullptr if the employee object doesn't exist
 }
+
 
