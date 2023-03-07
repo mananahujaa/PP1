@@ -25,7 +25,20 @@ CircleList<Employee*> loadEmployeeData()
   return employeeData;
 }
 
-// ------------------------------- Main -------------------------------
+// ------------------------------- Patient Data -------------------------------
+
+CircleList<Patient*> loadPatientData()
+{
+  CircleList<Patient*> patientData;
+  Patient* pat1 = new Patient("united123","Mary","Jane","02/22/1993","mary","testp","mary@marvel.com",982312);
+  Patient* pat2 = new Patient("united1123","Gwen","Maxwell","02/21/1993","gwen","testp","gwen@marvel.com",282312);
+
+  patientData.add(pat1);
+  patientData.add(pat2);
+  return patientData;
+}
+
+// ------------------------------- Misc Functions -------------------------------
 
 // Used to stop the console to let users see the messages and output
 void pause()
@@ -40,7 +53,7 @@ void pause()
 int main()
 {  
   CircleList<Employee*> employeeList = loadEmployeeData();
-  CircleList<Patient*> patientList;
+  CircleList<Patient*> patientList = loadPatientData();
 
   int menuChoice = 0;
   do
