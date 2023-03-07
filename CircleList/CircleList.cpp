@@ -50,9 +50,12 @@ template<typename T>
 void CircleList<T>::remove()
 {
     if (empty()) {
-        cout << "The queue is empty!" << endl;
+        cout << "Please add patient to the waitlist" << endl;
         return;
     }
+
+    cout << this->front->data->getName() << " has been checked in!!!" << endl << endl;
+
     if (this->front == this->rear) { // only one node in the queue
         delete this->front;
         this->front = NULL;
