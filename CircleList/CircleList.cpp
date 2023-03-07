@@ -1,6 +1,5 @@
 #include "iostream"
 #include "string.h"
-#include <cstddef>
 #include "CircleList.h"
 #include "../User/User.h"
 
@@ -64,6 +63,7 @@ void CircleList<T>::remove()
     CNode<T>* temp = this->front;
     this->front = temp->next;
     this->rear->next = this->front;
+    cout << temp->data->getName();
     delete temp;
     this->counter--;
 }

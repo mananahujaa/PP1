@@ -1,6 +1,7 @@
 #include "iostream"
 #include "string.h"
 #include "fstream"
+#include "unistd.h"
 #include "bits/stdc++.h"
 
 #include "./CircleList/CircleList.cpp"
@@ -41,12 +42,44 @@ CircleList<Patient*> loadPatientData()
 // ------------------------------- Misc Functions -------------------------------
 
 // Used to stop the console to let users see the messages and output
-void pause()
+void sys_pause()
 {   
-    string dummy;
-    cout << "\n\nEnter any key and press Enter to continue:";
-    cin >> dummy;
+    sleep(3);
 }
+
+Patient* createPatient() {
+    string insuranceID, fName, lName, dob, username, password, email;
+    int phone;
+    
+    cout << "Enter insurance ID: ";
+    cin.ignore();
+    getline(cin, insuranceID);
+
+    cout << "Enter first name: ";
+    getline(cin, fName);
+
+    cout << "Enter last name: ";
+    getline(cin, lName);
+
+    cout << "Enter date of birth: ";
+    getline(cin, dob);
+
+    cout << "Enter username: ";
+    getline(cin, username);
+
+    cout << "Enter password: ";
+    getline(cin, password);
+
+    cout << "Enter email: ";
+    getline(cin, email);
+
+    cout << "Enter phone number: ";
+    cin >> phone;
+    cin.ignore();
+    Patient* newPatient = new Patient(insuranceID, fName, lName, dob, username, password, email, phone);
+    return newPatient;
+}
+
 
 // ------------------------------- Main -------------------------------
 
@@ -54,6 +87,8 @@ int main()
 {  
   CircleList<Employee*> employeeList = loadEmployeeData();
   CircleList<Patient*> patientList = loadPatientData();
+
+  Patient* newPatient = NULL;
 
   int menuChoice = 0;
   do
@@ -84,7 +119,7 @@ int main()
           cout << "\t\t\tDoc Ock's Office" << endl << endl;
           cout << " Welcome, " << sessionEmp->getName() << endl; 
           cout << " What would you like to do? :)" << endl << endl;
-          cout << " 1. Show Patient WaitList \n 2. Add Patient \n 3. Pop Patient \n 4. Logout" << endl;
+          cout << " 1. Show Patient WaitList \n 2. Add Patient to Waitlist \n 3. Check-In Patient \n 4. Logout" << endl;
           cout << " Enter the corresponding number of the options from above options(eq : 1) :";
           cin >> employeeMenu;
           
@@ -92,12 +127,18 @@ int main()
           {
             case 1:
               patientList.printQ();
-              pause();
+              sys_pause();
               break;
             case 2:
+              newPatient  = createPatient();
+              newPatient->setPaymentStatus();
+              patientList.add(newPatient);
+              cout << "Patient has been sucesfully added into the waitlist!!!!" << endl;
+              sys_pause();
               break;
             case 3:
               patientList.remove();
+              sys_pause();
               break;    
             case 4:
               employeeMenu = 4;
@@ -108,11 +149,16 @@ int main()
           }
         } while (employeeMenu != 4);
       }
+      else
+      {
+        cout << "The user doesnt exist or invalid credentials. Please try again!!!" << endl;
+        sys_pause();
+      }
     }
     else if(menuChoice == 2)
     {
       patientList.printQ();
-      pause();
+      sys_pause();
     } 
     else
     {
