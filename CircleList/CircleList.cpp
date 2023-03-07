@@ -1,7 +1,9 @@
 #include "iostream"
 #include "string.h"
+#include <cstddef>
 #include "CircleList.h"
 #include "../User/User.h"
+
 
 using namespace std;
 
