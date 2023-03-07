@@ -94,7 +94,7 @@ Employee* CircleList<T>::employeeAuth(string username, string password)
     while(curr != this->rear) 
     {
         Employee* emp = dynamic_cast<Employee*>(curr->data);
-        if (emp != nullptr && emp->getUsername() == username && emp->getPassword() == password)
+        if (emp != NULL && emp->getUsername() == username && emp->getPassword() == password)
         {
             return emp; // return the employee object if it exists
         }
@@ -102,11 +102,11 @@ Employee* CircleList<T>::employeeAuth(string username, string password)
     }
     // check the last node separately since it was not checked in the while loop
     Employee* emp = dynamic_cast<Employee*>(curr->data);
-    if (emp != nullptr && emp->getUsername() == username && emp->getPassword() == password)
+    if (emp != NULL && emp->getUsername() == username && emp->getPassword() == password)
     {
         return emp; // return the employee object if it exists
     }
-    return nullptr; // return nullptr if the employee object doesn't exist
+    return NULL; // return NULL if the employee object doesn't exist
 }
 
 
