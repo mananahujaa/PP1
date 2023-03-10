@@ -44,36 +44,36 @@ CircleList<Patient*> loadPatientData()
 // Used to stop the console to let users see the messages and output
 void sys_pause()
 {   
-    sleep(3);
+    sleep(5);
 }
 
 Patient* createPatient() {
     string insuranceID, fName, lName, dob, username, password, email;
     int phone;
     
-    cout << "Enter insurance ID: ";
+    cout << " Enter insurance ID: ";
     cin.ignore();
     getline(cin, insuranceID);
 
-    cout << "Enter first name: ";
+    cout << " Enter first name: ";
     getline(cin, fName);
 
-    cout << "Enter last name: ";
+    cout << " Enter last name: ";
     getline(cin, lName);
 
-    cout << "Enter date of birth: ";
+    cout << " Enter date of birth: ";
     getline(cin, dob);
 
-    cout << "Enter username: ";
+    cout << " Enter username: ";
     getline(cin, username);
 
-    cout << "Enter password: ";
+    cout << " Enter password: ";
     getline(cin, password);
 
-    cout << "Enter email: ";
+    cout << " Enter email: ";
     getline(cin, email);
 
-    cout << "Enter phone number: ";
+    cout << " Enter phone number: ";
     cin >> phone;
     cin.ignore();
     Patient* newPatient = new Patient(insuranceID, fName, lName, dob, username, password, email, phone);
@@ -144,14 +144,14 @@ int main()
               employeeMenu = 4;
               break;
             default:
-              cout << "invalid Entry try again" << endl;
+              cout << " Invalid Entry try again" << endl;
               break;
           }
         } while (employeeMenu != 4);
       }
       else
       {
-        cout << "The user doesnt exist or invalid credentials. Please try again!!!" << endl;
+        cout << " The user doesnt exist or invalid credentials. Please try again!!!" << endl;
         sys_pause();
       }
     }

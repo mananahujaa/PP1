@@ -32,7 +32,6 @@ class CircleList
     public:
     int counter;
     CircleList();
-    ~CircleList();
     bool empty() const;
     void add(T data);
     void remove();

@@ -15,15 +15,6 @@ CircleList<T>::CircleList()
 }
 
 template<typename T>
-CircleList<T>::~CircleList()
-{
-    while (!empty())
-    {
-        remove();
-    }
-}
-
-template<typename T>
 bool CircleList<T>::empty() const
 {
     return this->front == NULL;
@@ -50,11 +41,11 @@ template<typename T>
 void CircleList<T>::remove()
 {
     if (empty()) {
-        cout << "Please add patient to the waitlist" << endl;
+        cout << endl << " Please add patient to the waitlist" << endl;
         return;
     }
 
-    cout << this->front->data->getName() << " has been checked in!!!" << endl << endl;
+    cout << endl << this->front->data->getName() << " has been checked in!!!" << endl << endl;
 
     if (this->front == this->rear) { // only one node in the queue
         delete this->front;
@@ -75,14 +66,16 @@ template<typename T>
 void CircleList<T>::printQ()
 {
     if (empty()) {
-        cout << "The queue is empty!" << endl;
+        cout << endl << " The Waitlist is empty!" << endl;
         return;
     }
 
     CNode<T>* temp = this->front;
-    cout << "Queue: ";
+    int count = 1;
+    cout << endl << " Current Waitlist: " << endl;
     do {
-        cout << temp->data->getName() << " -> ";
+        cout << " " << count << ". " << temp->data->getName() << endl;
+        count++;
         temp = temp->next;
     } while (temp != this->front);
     cout << endl;
